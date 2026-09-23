@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B4Umove — Before You Move</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="splash-screen">
+    <div class="splash-logo">
+      <svg viewBox="0 0 24 24" width="60" height="60" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      B4U<span>move</span>
+    </div>
+  </div>
+
+  <ul class="bg-particles">
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+  </ul>
+  
+  <header class="navbar">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      B4U<span>move</span>
+    </div>
+    <nav>
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('explore')">Find a Place</a>
+      <a href="#" onclick="showPage('about')">About</a>
+      <a href="#" onclick="showPage('contact')" id="navContact">Contact</a>
+      <a href="#" onclick="showPage('add')" id="navAdd" style="display:none;">Add Listing</a>
+      <a href="#" onclick="showPage('dashboard')" id="navDashboard" style="display:none;">Dashboard</a>
+      <a href="#" onclick="showPage('login')" id="navLogin" class="login-link">Login</a>
+      <a href="#" onclick="logout()" id="navLogout" style="display:none;" class="login-link">Logout</a>
+    </nav>
+    <div style="display:flex; gap:15px; align-items:center;">
+      <button class="icon-btn" onclick="toggleTheme()" title="Toggle Theme">
+        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <button class="nav-btn" onclick="showPage('explore')">Explore stays</button>
+    </div>
+  </header>
+
+  <main id="app"></main>
+
+  <footer>
+    <div><strong>B4Umove.</strong><br><small>Find your place before you move.</small></div>
+    <div>Rooms · PGs · Hostels · Flats</div>
+  </footer>
+
+  <div class="fab-container">
+    <button class="fab" onclick="scrollToTop()" title="Scroll to Top">
+      <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+    </button>
+  </div>
+  
+  <div id="popup" class="popup"></div>
+  <script src="script.js"></script>
+</body>
+</html>

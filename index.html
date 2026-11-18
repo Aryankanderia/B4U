@@ -1,60 +1,266 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>B4Umove — Before You Move</title>
+  <title>B4Umove — Before You Move | Modern Accommodation Discovery</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Dynamic Ambient Glow Blobs -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+  <!-- Interactive Cursor Spotlight Glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Splash Screen -->
   <div id="splash-screen">
-    <div class="splash-logo">
-      <svg viewBox="0 0 24 24" width="60" height="60" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-      B4U<span>move</span>
+    <div class="splash-content">
+      <div class="splash-logo-box">
+        <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+      </div>
+      <div class="splash-brand">B4U<span>move</span></div>
+      <p class="splash-tagline">Find your place before you move</p>
+      <div class="splash-loader"><div class="splash-progress"></div></div>
     </div>
   </div>
 
-  <ul class="bg-particles">
-    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+  <!-- Background Floating Particles -->
+  <ul class="bg-particles" aria-hidden="true">
+    <li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li>
   </ul>
   
-  <header class="navbar">
-    <div class="logo">
-      <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-      B4U<span>move</span>
+  <!-- Navigation Header -->
+  <header class="navbar" id="mainNavbar">
+    <div class="nav-container">
+      <div class="logo" onclick="showPage('home')" role="button" tabindex="0">
+        <div class="logo-icon-wrap">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+        </div>
+        <div class="logo-text">B4U<span>move</span></div>
+        <span class="live-pill"><span class="live-dot"></span> 30+ Verified Stays</span>
+      </div>
+
+      <nav class="nav-links" id="desktopNav">
+        <a href="javascript:void(0)" onclick="showPage('home')" id="navHome" class="active">Home</a>
+        <a href="javascript:void(0)" onclick="showPage('explore')" id="navExplore">Find a Place</a>
+        <a href="javascript:void(0)" onclick="showPage('wishlist')" id="navWishlist">
+          Saved <span class="nav-badge" id="favCount">0</span>
+        </a>
+        <a href="javascript:void(0)" onclick="showPage('compare')" id="navCompare">
+          Compare <span class="nav-badge" id="compareCount">0</span>
+        </a>
+        <a href="javascript:void(0)" onclick="showPage('calculator')" id="navCalc">Rent Estimator</a>
+        <a href="javascript:void(0)" onclick="showPage('about')" id="navAbout">About</a>
+        <a href="javascript:void(0)" onclick="showPage('contact')" id="navContact">Contact</a>
+        <a href="javascript:void(0)" onclick="showPage('add')" id="navAdd" style="display:none;">+ Add Listing</a>
+        <a href="javascript:void(0)" onclick="showPage('dashboard')" id="navDashboard" style="display:none;">Dashboard</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Theme Toggle Button -->
+        <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle Theme">
+          <span class="theme-icon sun-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </span>
+          <span class="theme-icon moon-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </span>
+        </button>
+
+        <!-- Auth & CTA Button -->
+        <div id="authNavContainer">
+          <button class="nav-link-btn" onclick="showPage('login')" id="navLogin">Login</button>
+          <button class="nav-link-btn" onclick="logout()" id="navLogout" style="display:none;">Logout</button>
+        </div>
+
+        <button class="cta-pill-btn" onclick="showPage('explore')">
+          <span>Explore Stays</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="icon-btn mobile-toggle" onclick="toggleMobileNav()" aria-label="Open Navigation Menu">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
     </div>
-    <nav>
-      <a href="#" onclick="showPage('home')">Home</a>
-      <a href="#" onclick="showPage('explore')">Find a Place</a>
-      <a href="#" onclick="showPage('about')">About</a>
-      <a href="#" onclick="showPage('contact')" id="navContact">Contact</a>
-      <a href="#" onclick="showPage('add')" id="navAdd" style="display:none;">Add Listing</a>
-      <a href="#" onclick="showPage('dashboard')" id="navDashboard" style="display:none;">Dashboard</a>
-      <a href="#" onclick="showPage('login')" id="navLogin" class="login-link">Login</a>
-      <a href="#" onclick="logout()" id="navLogout" style="display:none;" class="login-link">Logout</a>
-    </nav>
-    <div style="display:flex; gap:15px; align-items:center;">
-      <button class="icon-btn" onclick="toggleTheme()" title="Toggle Theme">
-        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-      </button>
-      <button class="nav-btn" onclick="showPage('explore')">Explore stays</button>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-drawer-header">
+        <div class="logo">B4U<span>move</span></div>
+        <button class="icon-btn" onclick="toggleMobileNav()"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+      <div class="mobile-drawer-links">
+        <a href="javascript:void(0)" onclick="mobileNavTo('home')">🏠 Home</a>
+        <a href="javascript:void(0)" onclick="mobileNavTo('explore')">🔍 Find a Place</a>
+        <a href="javascript:void(0)" onclick="mobileNavTo('wishlist')">❤️ Saved Stays (<span id="mobFavCount">0</span>)</a>
+        <a href="javascript:void(0)" onclick="mobileNavTo('compare')">⚖️ Compare (<span id="mobCompareCount">0</span>)</a>
+        <a href="javascript:void(0)" onclick="mobileNavTo('calculator')">🧮 Budget Estimator</a>
+        <a href="javascript:void(0)" onclick="mobileNavTo('about')">ℹ️ About</a>
+        <a href="javascript:void(0)" onclick="mobileNavTo('contact')" id="mobNavContact">📩 Contact</a>
+        <a href="javascript:void(0)" onclick="mobileNavTo('add')" id="mobNavAdd" style="display:none;">➕ Add Listing</a>
+        <a href="javascript:void(0)" onclick="mobileNavTo('dashboard')" id="mobNavDashboard" style="display:none;">📊 Dashboard</a>
+        <a href="javascript:void(0)" onclick="mobileNavTo('login')" id="mobNavLogin">🔐 Login</a>
+        <a href="javascript:void(0)" onclick="logout(); toggleMobileNav();" id="mobNavLogout" style="display:none;">🚪 Logout</a>
+      </div>
     </div>
   </header>
 
+  <!-- Main View Container -->
   <main id="app"></main>
 
-  <footer>
-    <div><strong>B4Umove.</strong><br><small>Find your place before you move.</small></div>
-    <div>Rooms · PGs · Hostels · Flats</div>
+  <!-- Footer Section -->
+  <footer class="modern-footer">
+    <div class="footer-inner">
+      <div class="footer-col brand-col">
+        <div class="logo">
+          <div class="logo-icon-wrap sm">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          </div>
+          B4U<span>move</span>
+        </div>
+        <p class="footer-desc">Before You Move — the premier student & young professional accommodation discovery platform across Delhi-NCR, Bangalore, Mumbai & beyond.</p>
+        <div class="footer-badges">
+          <span>🛡️ 100% Zero Brokerage</span>
+          <span>⚡ Direct Owner Chat</span>
+          <span>🎓 Verified Student Zones</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Popular Hubs</h4>
+        <ul>
+          <li><a href="javascript:void(0)" onclick="quickFilterByHub('Muradnagar, Ghaziabad')">Near KIET (Ghaziabad)</a></li>
+          <li><a href="javascript:void(0)" onclick="quickFilterByHub('Noida')">Sector 62 & 15, Noida</a></li>
+          <li><a href="javascript:void(0)" onclick="quickFilterByHub('Delhi')">North & South Campus, Delhi</a></li>
+          <li><a href="javascript:void(0)" onclick="quickFilterByHub('Gurgaon')">Cyber City & DLF, Gurgaon</a></li>
+          <li><a href="javascript:void(0)" onclick="quickFilterByHub('Bangalore')">Koramangala, Bangalore</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Property Types</h4>
+        <ul>
+          <li><a href="javascript:void(0)" onclick="quickFilterByType('PG')">Paying Guest (PG)</a></li>
+          <li><a href="javascript:void(0)" onclick="quickFilterByType('Flat')">1 BHK, 2 BHK & Studio Flats</a></li>
+          <li><a href="javascript:void(0)" onclick="quickFilterByType('Hostel')">Affordable Hostels</a></li>
+          <li><a href="javascript:void(0)" onclick="quickFilterByType('Room')">Independent Rooms</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Stay in the Loop</h4>
+        <p class="footer-muted">Subscribe for price drop alerts & freshly added student listings.</p>
+        <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+          <input type="email" placeholder="Enter your email" required id="newsletterEmail">
+          <button type="submit">Join</button>
+        </form>
+        <div class="footer-socials">
+          <span title="Twitter / X">𝕏</span>
+          <span title="Instagram">📸</span>
+          <span title="LinkedIn">💼</span>
+          <span title="GitHub">🐙</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 B4Umove Technologies. Crafted with ❤️ for Students & Movers.</div>
+      <div class="footer-links-inline">
+        <a href="javascript:void(0)" onclick="showPage('about')">Privacy Policy</a> ·
+        <a href="javascript:void(0)" onclick="showPage('about')">Terms of Service</a> ·
+        <a href="https://b4umove.netlify.app/" target="_blank" rel="noopener">Live on Netlify</a>
+      </div>
+    </div>
   </footer>
 
+  <!-- Floating Action Buttons -->
   <div class="fab-container">
-    <button class="fab" onclick="scrollToTop()" title="Scroll to Top">
-      <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+    <button class="fab ai-fab" onclick="toggleAiDrawer()" title="Ask B4Umove AI Assistant" id="aiFabBtn">
+      <span class="ai-fab-icon">✨</span>
+      <span class="ai-fab-badge">AI</span>
+    </button>
+    <button class="fab compare-fab" onclick="showPage('compare')" title="Compare Properties" id="floatingCompareBtn" style="display:none;">
+      <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+      <span class="fab-badge" id="fabCompareBadge">0</span>
+    </button>
+    <button class="fab scroll-fab" onclick="scrollToTop()" title="Scroll to Top">
+      <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
     </button>
   </div>
-  
-  <div id="popup" class="popup"></div>
+
+  <!-- B4Umove AI Copilot Drawer -->
+  <div id="aiDrawer" class="ai-drawer" aria-hidden="true">
+    <div class="ai-drawer-header">
+      <div class="ai-header-info">
+        <div class="ai-avatar-icon">✨</div>
+        <div>
+          <div class="ai-drawer-title">B4Umove AI Copilot <span class="ai-online-dot"></span></div>
+          <div class="ai-drawer-subtitle" id="aiModeSubtitle">Powered by Gemini AI / Student Matchmaker</div>
+        </div>
+      </div>
+      <div class="ai-header-actions">
+        <button class="ai-icon-btn" onclick="openAiKeyModal()" title="Configure Gemini API Key">🔑</button>
+        <button class="ai-icon-btn" onclick="toggleAiDrawer()" title="Close Assistant">✕</button>
+      </div>
+    </div>
+
+    <!-- Suggested Quick Prompts -->
+    <div class="ai-quick-prompts">
+      <button type="button" class="ai-prompt-chip" onclick="askAiPrompt('Best boys PG near KIET with 3 meals under 7000')">🏠 Boys PG near KIET &lt; ₹7k</button>
+      <button type="button" class="ai-prompt-chip" onclick="askAiPrompt('Safe girls PG near campus with biometric security')">🛡️ Safe Girls PG</button>
+      <button type="button" class="ai-prompt-chip" onclick="askAiPrompt('Modern 2 BHK flat in Noida Sector 62')">🏢 2 BHK Noida</button>
+      <button type="button" class="ai-prompt-chip" onclick="askAiPrompt('What are typical security deposit and curfew rules?')">📜 Deposit rules</button>
+    </div>
+
+    <!-- Messages Container -->
+    <div class="ai-messages-container" id="aiMessagesContainer">
+      <div class="ai-msg ai-msg-bot">
+        <div class="ai-msg-avatar">🤖</div>
+        <div class="ai-msg-bubble">
+          <p>Hey there! I am your <strong>B4Umove AI Copilot</strong>. 🎓</p>
+          <p>Ask me anything! For example: <em>"Find me a single room PG near KIET under ₹8,000"</em>, <em>"Suggest flats in Noida"</em>, or <em>"Explain security deposit norms"</em>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Form -->
+    <form class="ai-input-form" onsubmit="handleAiSubmit(event)">
+      <input type="text" id="aiUserInput" placeholder="Ask AI: Find stays, calculate rent, or house rules..." autocomplete="off">
+      <button type="submit" id="aiSendBtn" aria-label="Send to AI">
+        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.2" fill="none"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </form>
+  </div>
+
+  <!-- Interactive Modal Container -->
+  <div id="modalOverlay" class="modal-overlay" onclick="closeModalOnOverlay(event)">
+    <div class="modal-card" id="modalContainer">
+      <!-- Injected dynamically via JS -->
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Legacy Popup Fallback -->
+  <div id="popup" class="popup" role="status"></div>
+
   <script src="script.js"></script>
 </body>
 </html>

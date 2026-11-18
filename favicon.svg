@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="b4uGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="50%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Squircle Brand Tile -->
+  <rect width="64" height="64" rx="18" fill="url(#b4uGradient)"/>
+  
+  <!-- Subtle Inner Border -->
+  <rect x="1" y="1" width="62" height="62" rx="17" fill="none" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.5"/>
+
+  <!-- Iconic B4Umove House Icon -->
+  <g filter="url(#subtleGlow)">
+    <path d="M14 29L32 14L50 29V46C50 48.2 48.2 50 46 50H18C15.8 50 14 48.2 14 46V29Z" 
+          fill="none" 
+          stroke="#ffffff" 
+          stroke-width="4.2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+    <polyline points="25 50 25 34 39 34 39 50" 
+              fill="none" 
+              stroke="#ffffff" 
+              stroke-width="4.2" 
+              stroke-linecap="round" 
+              stroke-linejoin="round"/>
+  </g>
+
+  <!-- Live Verified Stay Accent Dot -->
+  <circle cx="49" cy="15" r="5" fill="#10b981" stroke="#ffffff" stroke-width="2.2" />
+</svg>

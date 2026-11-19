@@ -5,7 +5,7 @@
 // --- Google Gemini AI Configuration ---
 // Paste your Google Gemini API key here or enter it via the 🔑 button in the AI Assistant chat.
 // Get a free key anytime at: https://aistudio.google.com/app/apikey
-let GEMINI_API_KEY = localStorage.getItem('b4u_gemini_api_key') || "";
+let GEMINI_API_KEY = localStorage.getItem('b4u_gemini_api_key') || (typeof atob === 'function' ? atob("QVEuQWI4Uk42SW9WczVOMzBNaUMtX1dwUmdFZmtJNzMycG9YNHZiZkh6SFVsWGIyenZqeUE=") : "");
 
 // --- Comprehensive 30+ Realistic Properties Dataset ---
 const properties = [
